@@ -97,7 +97,7 @@ const Card = (stack, targetElement) => {
       ]
     });
 
-    Card.appendToParent(targetElement);
+    Card.insertBelow(targetElement);
 
     eventEmitter.on('panstart', () => {
       Card.appendToParent(targetElement);
@@ -451,6 +451,12 @@ Card.appendToParent = (element) => {
     parentNode.appendChild(element);
   }
 };
+
+Card.insertBelow = (element) =>{
+  const parentNode = element.parentNode;
+  parentNode.removeChild(element);
+  parentNode.insertBefore(element,parentNode.firstChild);
+}
 
 /**
  * Returns a value between 0 and 1 indicating the completeness of the throw out condition.
