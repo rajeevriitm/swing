@@ -117,7 +117,7 @@ var Card = function Card(stack, targetElement) {
       }]]
     });
 
-    Card.appendToParent(targetElement);
+    Card.insertBelow(targetElement);
 
     eventEmitter.on('panstart', function () {
       Card.appendToParent(targetElement);
@@ -442,6 +442,12 @@ Card.appendToParent = function (element) {
     parentNode.removeChild(element);
     parentNode.appendChild(element);
   }
+};
+
+Card.insertBelow = function (element) {
+  var parentNode = element.parentNode;
+  parentNode.removeChild(element);
+  parentNode.insertBefore(element, parentNode.firstChild);
 };
 
 /**
